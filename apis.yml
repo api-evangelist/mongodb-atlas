@@ -1,0 +1,63 @@
+aid: mongodb-atlas
+name: MongoDB Atlas
+description: >-
+  MongoDB Atlas is a fully managed cloud database service for MongoDB,
+  available on AWS, Google Cloud, and Microsoft Azure, with global clusters,
+  automated backups, security, and integrated search, vector, and stream
+  processing capabilities. The Atlas Administration API provides programmatic
+  control over projects, clusters, users, network access, backups, and billing,
+  and is paired with a Data API and Resource Policy APIs for full lifecycle
+  management using HTTP Digest, API keys, or service account OAuth tokens.
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - Database
+  - Document Database
+  - NoSQL
+  - MongoDB
+  - Cloud Database
+  - DBaaS
+  - Vector Search
+  - Atlas
+url: https://raw.githubusercontent.com/api-evangelist/mongodb-atlas/refs/heads/main/apis.yml
+created: '2026-05-11'
+modified: '2026-05-11'
+specificationVersion: '0.19'
+apis:
+  - aid: mongodb-atlas:administration-api-v2
+    name: MongoDB Atlas Administration API v2
+    description: >-
+      REST API for programmatically managing MongoDB Atlas organizations,
+      projects, clusters, database users, network access, backups, alerts,
+      and billing. Authenticates with HTTP Digest using public/private API key
+      pairs or with OAuth 2.0 access tokens issued to Atlas service accounts.
+    humanURL: https://www.mongodb.com/docs/atlas/api/atlas-admin-api/
+    baseURL: https://cloud.mongodb.com/api/atlas/v2
+    tags:
+      - REST
+      - Administration
+      - Clusters
+      - Projects
+      - Service Accounts
+      - HTTP Digest
+    properties:
+      - type: Documentation
+        url: https://www.mongodb.com/docs/atlas/api/atlas-admin-api/
+      - type: API Reference
+        url: https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/
+      - type: OpenAPI
+        url: https://mongodb-mms-prod-build-server.s3.amazonaws.com/openapi/openapi.json
+      - type: Postman
+        url: https://www.postman.com/mongodb-devrel/workspace/mongodb-atlas-administration-apis/overview
+common:
+  - type: Website
+    url: https://www.mongodb.com/products/platform/atlas-database
+  - type: Documentation
+    url: https://www.mongodb.com/docs/atlas/
+  - type: Pricing
+    url: https://www.mongodb.com/pricing
+  - type: Sign Up
+    url: https://www.mongodb.com/cloud/atlas/register
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
