@@ -50,6 +50,8 @@ apis:
       - type: Postman
         url: https://www.postman.com/mongodb-devrel/workspace/mongodb-atlas-administration-apis/overview
 common:
+  - type: GitHubOrganization
+    url: https://github.com/mongodb
   - type: Website
     url: https://www.mongodb.com/products/platform/atlas-database
   - type: Documentation
