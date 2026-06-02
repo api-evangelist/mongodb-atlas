@@ -1,0 +1,105 @@
+aid: mongodb-atlas
+name: MongoDB Atlas — Streaming Surface Review
+reviewed: '2026-05-29'
+reviewer: API Evangelist
+scope: >-
+  Determine whether MongoDB Atlas exposes any documented public streaming
+  surface that can be modeled as an AsyncAPI specification. Expanded scope
+  includes SSE, WebSockets, and Kafka broker endpoints in addition to
+  traditional messaging brokers.
+verdict: no-public-streaming-spec-surface
+summary: >-
+  MongoDB Atlas does not publish a documented public streaming endpoint that
+  can be honestly modeled as AsyncAPI. Every streaming-adjacent surface either
+  rides a proprietary wire protocol (BSON over TCP via driver), is consumed
+  client-side (Atlas Stream Processing is a Kafka *client*, not a broker), or
+  is a one-way outbound webhook sender. No AsyncAPI spec was produced.
+surfaces:
+  - name: MongoDB Change Streams
+    documentationURL: https://www.mongodb.com/docs/manual/changeStreams/
+    transport: MongoDB wire protocol (BSON over TCP) via official drivers
+    consumptionModel: >-
+      Cursor-based. Clients call collection.watch() / db.watch() / client.watch()
+      through a MongoDB driver. The driver opens a tailable cursor against the
+      replica set primary (or mongos for sharded clusters) and iterates change
+      events. Connection strings use mongodb:// or mongodb+srv:// schemes.
+    modelable: false
+    rationale: >-
+      The MongoDB wire protocol is a proprietary binary protocol, not one of
+      the protocols natively supported by AsyncAPI (kafka, amqp, mqtt, ws,
+      http/sse, nats, jms, stomp, redis, pulsar, googlepubsub, ibmmq, solace,
+      mercure, anypointmq). Modeling it as AsyncAPI would require fabricating
+      a binding that does not exist.
+    evidence: >-
+      MongoDB docs show driver-only consumption with code samples for C, C#,
+      Go, Java, Kotlin, Python, Node.js, PHP, Ruby, and Swift. No HTTP/SSE,
+      WebSocket, Kafka, or AMQP surface is offered for change streams.
+  - name: Atlas Stream Processing
+    documentationURL: https://www.mongodb.com/docs/atlas/atlas-stream-processing/overview/
+    connectionRegistryURL: https://www.mongodb.com/docs/atlas/atlas-stream-processing/manage-connection-registry/
+    transport: n/a — Atlas acts as a client, not a broker
+    consumptionModel: >-
+      Atlas Stream Processing is a managed processing engine, not a broker.
+      It consumes from external sources (customer-operated Kafka brokers,
+      AWS Kinesis, MongoDB change streams, HTTPS endpoints) and writes to
+      external sinks (Kafka topics, Atlas collections, S3, Azure Blob, GCP
+      Pub/Sub, external functions). Connections are configured in a per-
+      workspace connection registry. Stream processors are defined and
+      managed via mongosh against a Stream Processing Instance using a
+      MongoDB connection string.
+    modelable: false
+    rationale: >-
+      Atlas does not publish a Kafka broker URL, AMQP endpoint, MQTT broker,
+      WebSocket endpoint, or SSE feed that an external AsyncAPI client could
+      subscribe to. The Kafka in this product is the customer's Kafka — Atlas
+      is the client. Modeling Atlas Stream Processing as AsyncAPI would model
+      somebody else's broker, not Atlas.
+    evidence: >-
+      Docs state "Stream processors begin by ingesting documents from sources
+      of streaming data to which Atlas Stream Processing is connected. These
+      can be broker systems like Apache Kafka..." and the connection registry
+      lists Kafka Broker, Atlas Clusters, AWS Kinesis, AWS S3, Azure Blob,
+      Google Cloud Pub/Sub, and HTTPS as configurable *external* providers.
+  - name: Atlas Data API
+    documentationURL: https://www.mongodb.com/docs/atlas/api/data-api/
+    transport: HTTPS / REST
+    consumptionModel: Request/response REST. No streaming semantics.
+    modelable: false
+    rationale: >-
+      Out of scope for AsyncAPI. This is a synchronous REST API and belongs
+      to OpenAPI, not a streaming specification.
+  - name: Atlas App Services Triggers
+    documentationURL: https://www.mongodb.com/docs/atlas/app-services/triggers/
+    transport: Outbound webhooks (HTTP POST) and function invocation
+    consumptionModel: >-
+      Triggers fire database, authentication, or scheduled events that invoke
+      Atlas Functions or post to configured endpoints. This is outbound
+      one-way delivery to customer-owned URLs — there is no subscribable
+      broker, topic, or channel that Atlas hosts for third-party consumers.
+    modelable: false
+    rationale: >-
+      Webhooks-as-senders are not a streaming broker. AsyncAPI can document
+      webhook receivers, but that would model the customer's endpoint, not
+      Atlas. Additionally, Atlas App Services has been announced for
+      deprecation by MongoDB (separate from the core Atlas data plane), so
+      committing a spec here would be doubly questionable.
+checked:
+  - 'Change Streams transport — verified driver-only / BSON wire protocol'
+  - 'Atlas Stream Processing — verified Atlas is Kafka client, not broker'
+  - 'Connection Registry — verified all brokers are external, customer-owned'
+  - 'Atlas Data API — confirmed REST only, no streaming semantics'
+  - 'Triggers — outbound webhook senders, not a subscribable surface'
+  - 'No published AsyncAPI specification found in MongoDB GitHub or docs'
+recommendation: >-
+  Do not produce an AsyncAPI specification for MongoDB Atlas at this time.
+  apis.yml remains accurate with only the REST Administration API listed.
+  Re-evaluate if MongoDB publishes a Kafka-compatible egress broker, a
+  WebSocket / SSE change stream gateway, or an officially supported AsyncAPI
+  document.
+sources:
+  - https://www.mongodb.com/docs/atlas/
+  - https://www.mongodb.com/docs/manual/changeStreams/
+  - https://www.mongodb.com/docs/atlas/atlas-stream-processing/overview/
+  - https://www.mongodb.com/docs/atlas/atlas-stream-processing/manage-connection-registry/
+  - https://www.mongodb.com/docs/atlas/api/data-api/
+  - https://www.mongodb.com/docs/atlas/app-services/triggers/
