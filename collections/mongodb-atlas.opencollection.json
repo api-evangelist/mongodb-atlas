@@ -1,0 +1,370 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "MongoDB Atlas Administration API",
+    "version": "v2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Organizations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List organizations the API key has access to.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud.mongodb.com/api/atlas/v2/orgs"
+          },
+          "docs": "List organizations the API key has access to."
+        },
+        {
+          "info": {
+            "name": "Get one organization by ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud.mongodb.com/api/atlas/v2/orgs/:orgId",
+            "params": [
+              {
+                "name": "orgId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get one organization by ID."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Projects",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all projects (Atlas groups) the API key has access to.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud.mongodb.com/api/atlas/v2/groups"
+          },
+          "docs": "List all projects (Atlas groups) the API key has access to."
+        },
+        {
+          "info": {
+            "name": "Create a new project.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cloud.mongodb.com/api/atlas/v2/groups",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new project."
+        },
+        {
+          "info": {
+            "name": "Get one project by ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud.mongodb.com/api/atlas/v2/groups/:groupId",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the project (group)."
+              }
+            ]
+          },
+          "docs": "Get one project by ID."
+        },
+        {
+          "info": {
+            "name": "Update a project's settings.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://cloud.mongodb.com/api/atlas/v2/groups/:groupId",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the project (group)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a project's settings."
+        },
+        {
+          "info": {
+            "name": "Delete a project.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://cloud.mongodb.com/api/atlas/v2/groups/:groupId",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the project (group)."
+              }
+            ]
+          },
+          "docs": "Delete a project."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Clusters",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List clusters in a project.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud.mongodb.com/api/atlas/v2/groups/:groupId/clusters",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the project (group)."
+              }
+            ]
+          },
+          "docs": "List clusters in a project."
+        },
+        {
+          "info": {
+            "name": "Create a new cluster in a project.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cloud.mongodb.com/api/atlas/v2/groups/:groupId/clusters",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the project (group)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new cluster in a project."
+        },
+        {
+          "info": {
+            "name": "Get one cluster's configuration.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud.mongodb.com/api/atlas/v2/groups/:groupId/clusters/:clusterName",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the project (group)."
+              },
+              {
+                "name": "clusterName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get one cluster's configuration."
+        },
+        {
+          "info": {
+            "name": "Modify a cluster's configuration.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://cloud.mongodb.com/api/atlas/v2/groups/:groupId/clusters/:clusterName",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the project (group)."
+              },
+              {
+                "name": "clusterName",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Modify a cluster's configuration."
+        },
+        {
+          "info": {
+            "name": "Delete a cluster.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://cloud.mongodb.com/api/atlas/v2/groups/:groupId/clusters/:clusterName",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the project (group)."
+              },
+              {
+                "name": "clusterName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a cluster."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Database Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List database users in a project.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud.mongodb.com/api/atlas/v2/groups/:groupId/databaseUsers",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the project (group)."
+              }
+            ]
+          },
+          "docs": "List database users in a project."
+        },
+        {
+          "info": {
+            "name": "Create a database user.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cloud.mongodb.com/api/atlas/v2/groups/:groupId/databaseUsers",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the project (group)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a database user."
+        },
+        {
+          "info": {
+            "name": "Update a database user's roles or password.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://cloud.mongodb.com/api/atlas/v2/groups/:groupId/databaseUsers/:username",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the project (group)."
+              },
+              {
+                "name": "username",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a database user's roles or password."
+        },
+        {
+          "info": {
+            "name": "Delete a database user.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://cloud.mongodb.com/api/atlas/v2/groups/:groupId/databaseUsers/:username",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the project (group)."
+              },
+              {
+                "name": "username",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a database user."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
