@@ -58,7 +58,7 @@ common:
     url: https://www.mongodb.com/docs/atlas/
   - type: Pricing
     url: https://www.mongodb.com/pricing
-  - type: SignUp
+  - type: Signup
     url: https://www.mongodb.com/cloud/atlas/register
 maintainers:
   - FN: Kin Lane
