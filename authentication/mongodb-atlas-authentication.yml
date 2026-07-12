@@ -1,0 +1,19 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/mongodb-atlas-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: httpDigest
+  type: http
+  scheme: digest
+  description: HTTP Digest auth using public/private API key pair.
+  sources:
+  - openapi/mongodb-atlas-openapi.yml
+- name: bearer
+  type: http
+  scheme: bearer
+  description: OAuth 2.0 bearer access token issued to an Atlas service account.
+  sources:
+  - openapi/mongodb-atlas-openapi.yml

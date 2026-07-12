@@ -50,6 +50,17 @@ apis:
       - type: Postman
         url: https://www.postman.com/mongodb-devrel/workspace/mongodb-atlas-administration-apis/overview
 common:
+  - type: TrustCenter
+    url: security/mongodb-atlas-trust-center.yml
+  - type: VulnerabilityDisclosure
+    url: security/mongodb-atlas-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/mongodb-atlas-domain-security.yml
+  - type: Authentication
+    url: authentication/mongodb-atlas-authentication.yml
+  - name: Agent Skills
+    url: https://github.com/mongodb/agent-skills
+    type: AgentSkills
   - type: GitHubOrganization
     url: https://github.com/mongodb
   - type: Website
@@ -60,6 +71,8 @@ common:
     url: https://www.mongodb.com/pricing
   - type: Signup
     url: https://www.mongodb.com/cloud/atlas/register
+  - url: https://www.mongodb.com/blog/rss
+    type: Blog
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
