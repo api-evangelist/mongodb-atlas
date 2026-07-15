@@ -50,6 +50,8 @@ apis:
       - type: Postman
         url: https://www.postman.com/mongodb-devrel/workspace/mongodb-atlas-administration-apis/overview
 common:
+  - type: AgenticAccess
+    url: agentic-access/mongodb-atlas-agentic-access.yml
   - type: TrustCenter
     url: security/mongodb-atlas-trust-center.yml
   - type: VulnerabilityDisclosure
