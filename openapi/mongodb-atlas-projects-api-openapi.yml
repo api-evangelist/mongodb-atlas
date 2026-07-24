@@ -1,0 +1,121 @@
+openapi: 3.1.0
+info:
+  title: MongoDB Atlas Administration Clusters Projects API
+  version: v2
+  description: 'REST API for programmatically managing MongoDB Atlas organizations,
+
+    projects (groups), clusters, database users, network access, backups,
+
+    alerts, and billing. The v2 API is versioned and requires migration from
+
+    the legacy v1 (unversioned) API.
+
+
+    Authentication supports HTTP Digest with a public/private API key pair, or
+
+    OAuth 2.0 bearer tokens issued to Atlas service accounts. Note: the Atlas
+
+    Administration API does not provide cluster data access — use MongoDB
+
+    drivers with database user credentials for that.
+
+    '
+  contact:
+    name: MongoDB Atlas
+    url: https://www.mongodb.com/docs/atlas/api/atlas-admin-api/
+servers:
+- url: https://cloud.mongodb.com/api/atlas/v2
+  description: MongoDB Atlas Administration API v2
+security:
+- httpDigest: []
+- bearer: []
+tags:
+- name: Projects
+paths:
+  /groups:
+    get:
+      tags:
+      - Projects
+      operationId: listProjects
+      summary: List all projects (Atlas groups) the API key has access to.
+      responses:
+        '200':
+          description: Success
+    post:
+      tags:
+      - Projects
+      operationId: createProject
+      summary: Create a new project.
+      requestBody:
+        required: true
+        content:
+          application/vnd.atlas.2024-08-05+json:
+            schema:
+              type: object
+              required:
+              - name
+              - orgId
+              properties:
+                name:
+                  type: string
+                orgId:
+                  type: string
+      responses:
+        '201':
+          description: Created
+  /groups/{groupId}:
+    get:
+      tags:
+      - Projects
+      operationId: getProject
+      summary: Get one project by ID.
+      parameters:
+      - $ref: '#/components/parameters/GroupId'
+      responses:
+        '200':
+          description: Success
+    patch:
+      tags:
+      - Projects
+      operationId: updateProject
+      summary: Update a project's settings.
+      parameters:
+      - $ref: '#/components/parameters/GroupId'
+      requestBody:
+        required: true
+        content:
+          application/vnd.atlas.2024-08-05+json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: Success
+    delete:
+      tags:
+      - Projects
+      operationId: deleteProject
+      summary: Delete a project.
+      parameters:
+      - $ref: '#/components/parameters/GroupId'
+      responses:
+        '204':
+          description: Deleted
+components:
+  parameters:
+    GroupId:
+      name: groupId
+      in: path
+      required: true
+      description: Unique identifier of the project (group).
+      schema:
+        type: string
+  securitySchemes:
+    httpDigest:
+      type: http
+      scheme: digest
+      description: HTTP Digest auth using public/private API key pair.
+    bearer:
+      type: http
+      scheme: bearer
+      description: OAuth 2.0 bearer access token issued to an Atlas service account.

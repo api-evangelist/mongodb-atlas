@@ -1,0 +1,127 @@
+openapi: 3.1.0
+info:
+  title: MongoDB Atlas Administration Clusters API
+  version: v2
+  description: 'REST API for programmatically managing MongoDB Atlas organizations,
+
+    projects (groups), clusters, database users, network access, backups,
+
+    alerts, and billing. The v2 API is versioned and requires migration from
+
+    the legacy v1 (unversioned) API.
+
+
+    Authentication supports HTTP Digest with a public/private API key pair, or
+
+    OAuth 2.0 bearer tokens issued to Atlas service accounts. Note: the Atlas
+
+    Administration API does not provide cluster data access — use MongoDB
+
+    drivers with database user credentials for that.
+
+    '
+  contact:
+    name: MongoDB Atlas
+    url: https://www.mongodb.com/docs/atlas/api/atlas-admin-api/
+servers:
+- url: https://cloud.mongodb.com/api/atlas/v2
+  description: MongoDB Atlas Administration API v2
+security:
+- httpDigest: []
+- bearer: []
+tags:
+- name: Clusters
+paths:
+  /groups/{groupId}/clusters:
+    get:
+      tags:
+      - Clusters
+      operationId: listClusters
+      summary: List clusters in a project.
+      parameters:
+      - $ref: '#/components/parameters/GroupId'
+      responses:
+        '200':
+          description: Success
+    post:
+      tags:
+      - Clusters
+      operationId: createCluster
+      summary: Create a new cluster in a project.
+      parameters:
+      - $ref: '#/components/parameters/GroupId'
+      requestBody:
+        required: true
+        content:
+          application/vnd.atlas.2024-08-05+json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '201':
+          description: Created
+  /groups/{groupId}/clusters/{clusterName}:
+    get:
+      tags:
+      - Clusters
+      operationId: getCluster
+      summary: Get one cluster's configuration.
+      parameters:
+      - $ref: '#/components/parameters/GroupId'
+      - $ref: '#/components/parameters/ClusterName'
+      responses:
+        '200':
+          description: Success
+    patch:
+      tags:
+      - Clusters
+      operationId: updateCluster
+      summary: Modify a cluster's configuration.
+      parameters:
+      - $ref: '#/components/parameters/GroupId'
+      - $ref: '#/components/parameters/ClusterName'
+      requestBody:
+        required: true
+        content:
+          application/vnd.atlas.2024-08-05+json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: Success
+    delete:
+      tags:
+      - Clusters
+      operationId: deleteCluster
+      summary: Delete a cluster.
+      parameters:
+      - $ref: '#/components/parameters/GroupId'
+      - $ref: '#/components/parameters/ClusterName'
+      responses:
+        '202':
+          description: Accepted
+components:
+  parameters:
+    GroupId:
+      name: groupId
+      in: path
+      required: true
+      description: Unique identifier of the project (group).
+      schema:
+        type: string
+    ClusterName:
+      name: clusterName
+      in: path
+      required: true
+      schema:
+        type: string
+  securitySchemes:
+    httpDigest:
+      type: http
+      scheme: digest
+      description: HTTP Digest auth using public/private API key pair.
+    bearer:
+      type: http
+      scheme: bearer
+      description: OAuth 2.0 bearer access token issued to an Atlas service account.

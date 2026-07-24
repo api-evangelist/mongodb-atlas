@@ -1,0 +1,116 @@
+openapi: 3.1.0
+info:
+  title: MongoDB Atlas Administration Clusters Database Users API
+  version: v2
+  description: 'REST API for programmatically managing MongoDB Atlas organizations,
+
+    projects (groups), clusters, database users, network access, backups,
+
+    alerts, and billing. The v2 API is versioned and requires migration from
+
+    the legacy v1 (unversioned) API.
+
+
+    Authentication supports HTTP Digest with a public/private API key pair, or
+
+    OAuth 2.0 bearer tokens issued to Atlas service accounts. Note: the Atlas
+
+    Administration API does not provide cluster data access — use MongoDB
+
+    drivers with database user credentials for that.
+
+    '
+  contact:
+    name: MongoDB Atlas
+    url: https://www.mongodb.com/docs/atlas/api/atlas-admin-api/
+servers:
+- url: https://cloud.mongodb.com/api/atlas/v2
+  description: MongoDB Atlas Administration API v2
+security:
+- httpDigest: []
+- bearer: []
+tags:
+- name: Database Users
+paths:
+  /groups/{groupId}/databaseUsers:
+    get:
+      tags:
+      - Database Users
+      operationId: listDatabaseUsers
+      summary: List database users in a project.
+      parameters:
+      - $ref: '#/components/parameters/GroupId'
+      responses:
+        '200':
+          description: Success
+    post:
+      tags:
+      - Database Users
+      operationId: createDatabaseUser
+      summary: Create a database user.
+      parameters:
+      - $ref: '#/components/parameters/GroupId'
+      requestBody:
+        required: true
+        content:
+          application/vnd.atlas.2024-08-05+json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '201':
+          description: Created
+  /groups/{groupId}/databaseUsers/{username}:
+    patch:
+      tags:
+      - Database Users
+      operationId: updateDatabaseUser
+      summary: Update a database user's roles or password.
+      parameters:
+      - $ref: '#/components/parameters/GroupId'
+      - $ref: '#/components/parameters/Username'
+      requestBody:
+        required: true
+        content:
+          application/vnd.atlas.2024-08-05+json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: Success
+    delete:
+      tags:
+      - Database Users
+      operationId: deleteDatabaseUser
+      summary: Delete a database user.
+      parameters:
+      - $ref: '#/components/parameters/GroupId'
+      - $ref: '#/components/parameters/Username'
+      responses:
+        '204':
+          description: Deleted
+components:
+  parameters:
+    GroupId:
+      name: groupId
+      in: path
+      required: true
+      description: Unique identifier of the project (group).
+      schema:
+        type: string
+    Username:
+      name: username
+      in: path
+      required: true
+      schema:
+        type: string
+  securitySchemes:
+    httpDigest:
+      type: http
+      scheme: digest
+      description: HTTP Digest auth using public/private API key pair.
+    bearer:
+      type: http
+      scheme: bearer
+      description: OAuth 2.0 bearer access token issued to an Atlas service account.

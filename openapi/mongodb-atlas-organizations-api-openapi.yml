@@ -1,0 +1,75 @@
+openapi: 3.1.0
+info:
+  title: MongoDB Atlas Administration Clusters Organizations API
+  version: v2
+  description: 'REST API for programmatically managing MongoDB Atlas organizations,
+
+    projects (groups), clusters, database users, network access, backups,
+
+    alerts, and billing. The v2 API is versioned and requires migration from
+
+    the legacy v1 (unversioned) API.
+
+
+    Authentication supports HTTP Digest with a public/private API key pair, or
+
+    OAuth 2.0 bearer tokens issued to Atlas service accounts. Note: the Atlas
+
+    Administration API does not provide cluster data access — use MongoDB
+
+    drivers with database user credentials for that.
+
+    '
+  contact:
+    name: MongoDB Atlas
+    url: https://www.mongodb.com/docs/atlas/api/atlas-admin-api/
+servers:
+- url: https://cloud.mongodb.com/api/atlas/v2
+  description: MongoDB Atlas Administration API v2
+security:
+- httpDigest: []
+- bearer: []
+tags:
+- name: Organizations
+paths:
+  /orgs:
+    get:
+      tags:
+      - Organizations
+      operationId: listOrganizations
+      summary: List organizations the API key has access to.
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+  /orgs/{orgId}:
+    get:
+      tags:
+      - Organizations
+      operationId: getOrganization
+      summary: Get one organization by ID.
+      parameters:
+      - $ref: '#/components/parameters/OrgId'
+      responses:
+        '200':
+          description: Success
+        '404':
+          description: Not Found
+components:
+  parameters:
+    OrgId:
+      name: orgId
+      in: path
+      required: true
+      schema:
+        type: string
+  securitySchemes:
+    httpDigest:
+      type: http
+      scheme: digest
+      description: HTTP Digest auth using public/private API key pair.
+    bearer:
+      type: http
+      scheme: bearer
+      description: OAuth 2.0 bearer access token issued to an Atlas service account.
