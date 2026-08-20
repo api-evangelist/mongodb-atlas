@@ -28,6 +28,15 @@ tags:
   - NoSQL
   - MongoDB
   - Cloud Database
+  - Database-as-a-Service
+  - Vector Search
+  - Atlas
+tags_raw:
+  - Database
+  - Document Database
+  - NoSQL
+  - MongoDB
+  - Cloud Database
   - DBaaS
   - Vector Search
   - Atlas
@@ -42,6 +51,8 @@ apis:
   humanURL: https://www.mongodb.com/docs/atlas/api/atlas-admin-api/
   baseURL: https://cloud.mongodb.com/api/atlas/v2
   tags:
+  - Cluster
+  tags_raw:
   - Clusters
   properties:
   - type: OpenAPI
@@ -76,6 +87,8 @@ apis:
   humanURL: https://www.mongodb.com/docs/atlas/api/atlas-admin-api/
   baseURL: https://cloud.mongodb.com/api/atlas/v2
   tags:
+  - Organization
+  tags_raw:
   - Organizations
   properties:
   - type: OpenAPI
@@ -93,6 +106,8 @@ apis:
   humanURL: https://www.mongodb.com/docs/atlas/api/atlas-admin-api/
   baseURL: https://cloud.mongodb.com/api/atlas/v2
   tags:
+  - Project
+  tags_raw:
   - Projects
   properties:
   - type: OpenAPI
