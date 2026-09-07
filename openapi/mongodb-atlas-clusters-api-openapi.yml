@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: MongoDB Atlas Administration Clusters API
   version: v2
@@ -103,17 +103,17 @@ paths:
           description: Accepted
 components:
   parameters:
+    ClusterName:
+      name: clusterName
+      in: path
+      required: true
+      schema:
+        type: string
     GroupId:
       name: groupId
       in: path
       required: true
       description: Unique identifier of the project (group).
-      schema:
-        type: string
-    ClusterName:
-      name: clusterName
-      in: path
-      required: true
       schema:
         type: string
   securitySchemes:
