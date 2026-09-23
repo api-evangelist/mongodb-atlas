@@ -1,25 +1,12 @@
 openapi: 3.2.0
 info:
-  title: MongoDB Atlas Administration Clusters Organizations API
+  title: MongoDB Atlas Administration Organizations API
   version: v2
   description: 'REST API for programmatically managing MongoDB Atlas organizations,
 
     projects (groups), clusters, database users, network access, backups,
 
-    alerts, and billing. The v2 API is versioned and requires migration from
-
-    the legacy v1 (unversioned) API.
-
-
-    Authentication supports HTTP Digest with a public/private API key pair, or
-
-    OAuth 2.0 bearer tokens issued to Atlas service accounts. Note: the Atlas
-
-    Administration API does not provide cluster data access — use MongoDB
-
-    drivers with database user credentials for that.
-
-    '
+    alerts, and billing.'
   contact:
     name: MongoDB Atlas
     url: https://www.mongodb.com/docs/atlas/api/atlas-admin-api/
@@ -37,7 +24,7 @@ paths:
       tags:
       - Organizations
       operationId: listOrganizations
-      summary: List organizations the API key has access to.
+      summary: List organizations the API key has access to
       responses:
         '200':
           description: Success
@@ -48,7 +35,7 @@ paths:
       tags:
       - Organizations
       operationId: getOrganization
-      summary: Get one organization by ID.
+      summary: Get one organization by ID
       parameters:
       - $ref: '#/components/parameters/OrgId'
       responses:

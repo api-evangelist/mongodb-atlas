@@ -1,25 +1,12 @@
 openapi: 3.2.0
 info:
-  title: MongoDB Atlas Administration Clusters Database Users API
+  title: MongoDB Atlas Administration Database Users API
   version: v2
   description: 'REST API for programmatically managing MongoDB Atlas organizations,
 
     projects (groups), clusters, database users, network access, backups,
 
-    alerts, and billing. The v2 API is versioned and requires migration from
-
-    the legacy v1 (unversioned) API.
-
-
-    Authentication supports HTTP Digest with a public/private API key pair, or
-
-    OAuth 2.0 bearer tokens issued to Atlas service accounts. Note: the Atlas
-
-    Administration API does not provide cluster data access — use MongoDB
-
-    drivers with database user credentials for that.
-
-    '
+    alerts, and billing.'
   contact:
     name: MongoDB Atlas
     url: https://www.mongodb.com/docs/atlas/api/atlas-admin-api/
@@ -37,7 +24,7 @@ paths:
       tags:
       - Database Users
       operationId: listDatabaseUsers
-      summary: List database users in a project.
+      summary: List database users in a project
       parameters:
       - $ref: '#/components/parameters/GroupId'
       responses:
@@ -47,7 +34,7 @@ paths:
       tags:
       - Database Users
       operationId: createDatabaseUser
-      summary: Create a database user.
+      summary: Create a database user
       parameters:
       - $ref: '#/components/parameters/GroupId'
       requestBody:
@@ -65,7 +52,7 @@ paths:
       tags:
       - Database Users
       operationId: updateDatabaseUser
-      summary: Update a database user's roles or password.
+      summary: Update a database user's roles or password
       parameters:
       - $ref: '#/components/parameters/GroupId'
       - $ref: '#/components/parameters/Username'
@@ -83,7 +70,7 @@ paths:
       tags:
       - Database Users
       operationId: deleteDatabaseUser
-      summary: Delete a database user.
+      summary: Delete a database user
       parameters:
       - $ref: '#/components/parameters/GroupId'
       - $ref: '#/components/parameters/Username'
@@ -92,17 +79,17 @@ paths:
           description: Deleted
 components:
   parameters:
+    Username:
+      name: username
+      in: path
+      required: true
+      schema:
+        type: string
     GroupId:
       name: groupId
       in: path
       required: true
       description: Unique identifier of the project (group).
-      schema:
-        type: string
-    Username:
-      name: username
-      in: path
-      required: true
       schema:
         type: string
   securitySchemes:

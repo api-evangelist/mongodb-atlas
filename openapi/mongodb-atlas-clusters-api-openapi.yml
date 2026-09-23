@@ -6,20 +6,7 @@ info:
 
     projects (groups), clusters, database users, network access, backups,
 
-    alerts, and billing. The v2 API is versioned and requires migration from
-
-    the legacy v1 (unversioned) API.
-
-
-    Authentication supports HTTP Digest with a public/private API key pair, or
-
-    OAuth 2.0 bearer tokens issued to Atlas service accounts. Note: the Atlas
-
-    Administration API does not provide cluster data access — use MongoDB
-
-    drivers with database user credentials for that.
-
-    '
+    alerts, and billing.'
   contact:
     name: MongoDB Atlas
     url: https://www.mongodb.com/docs/atlas/api/atlas-admin-api/
@@ -37,7 +24,7 @@ paths:
       tags:
       - Clusters
       operationId: listClusters
-      summary: List clusters in a project.
+      summary: List clusters in a project
       parameters:
       - $ref: '#/components/parameters/GroupId'
       responses:
@@ -47,7 +34,7 @@ paths:
       tags:
       - Clusters
       operationId: createCluster
-      summary: Create a new cluster in a project.
+      summary: Create a new cluster in a project
       parameters:
       - $ref: '#/components/parameters/GroupId'
       requestBody:
@@ -65,7 +52,7 @@ paths:
       tags:
       - Clusters
       operationId: getCluster
-      summary: Get one cluster's configuration.
+      summary: Get one cluster's configuration
       parameters:
       - $ref: '#/components/parameters/GroupId'
       - $ref: '#/components/parameters/ClusterName'
@@ -76,7 +63,7 @@ paths:
       tags:
       - Clusters
       operationId: updateCluster
-      summary: Modify a cluster's configuration.
+      summary: Modify a cluster's configuration
       parameters:
       - $ref: '#/components/parameters/GroupId'
       - $ref: '#/components/parameters/ClusterName'
@@ -94,7 +81,7 @@ paths:
       tags:
       - Clusters
       operationId: deleteCluster
-      summary: Delete a cluster.
+      summary: Delete a cluster
       parameters:
       - $ref: '#/components/parameters/GroupId'
       - $ref: '#/components/parameters/ClusterName'

@@ -1,25 +1,12 @@
 openapi: 3.2.0
 info:
-  title: MongoDB Atlas Administration Clusters Projects API
+  title: MongoDB Atlas Administration Projects API
   version: v2
   description: 'REST API for programmatically managing MongoDB Atlas organizations,
 
     projects (groups), clusters, database users, network access, backups,
 
-    alerts, and billing. The v2 API is versioned and requires migration from
-
-    the legacy v1 (unversioned) API.
-
-
-    Authentication supports HTTP Digest with a public/private API key pair, or
-
-    OAuth 2.0 bearer tokens issued to Atlas service accounts. Note: the Atlas
-
-    Administration API does not provide cluster data access — use MongoDB
-
-    drivers with database user credentials for that.
-
-    '
+    alerts, and billing.'
   contact:
     name: MongoDB Atlas
     url: https://www.mongodb.com/docs/atlas/api/atlas-admin-api/
@@ -37,7 +24,7 @@ paths:
       tags:
       - Projects
       operationId: listProjects
-      summary: List all projects (Atlas groups) the API key has access to.
+      summary: List all projects (Atlas groups) the API key has access to
       responses:
         '200':
           description: Success
@@ -45,7 +32,7 @@ paths:
       tags:
       - Projects
       operationId: createProject
-      summary: Create a new project.
+      summary: Create a new project
       requestBody:
         required: true
         content:
@@ -68,7 +55,7 @@ paths:
       tags:
       - Projects
       operationId: getProject
-      summary: Get one project by ID.
+      summary: Get one project by ID
       parameters:
       - $ref: '#/components/parameters/GroupId'
       responses:
@@ -78,7 +65,7 @@ paths:
       tags:
       - Projects
       operationId: updateProject
-      summary: Update a project's settings.
+      summary: Update a project's settings
       parameters:
       - $ref: '#/components/parameters/GroupId'
       requestBody:
@@ -95,7 +82,7 @@ paths:
       tags:
       - Projects
       operationId: deleteProject
-      summary: Delete a project.
+      summary: Delete a project
       parameters:
       - $ref: '#/components/parameters/GroupId'
       responses:
