@@ -79,17 +79,17 @@ paths:
           description: Deleted
 components:
   parameters:
-    Username:
-      name: username
-      in: path
-      required: true
-      schema:
-        type: string
     GroupId:
       name: groupId
       in: path
       required: true
       description: Unique identifier of the project (group).
+      schema:
+        type: string
+    Username:
+      name: username
+      in: path
+      required: true
       schema:
         type: string
   securitySchemes:
