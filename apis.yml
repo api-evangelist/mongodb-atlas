@@ -133,6 +133,9 @@ apis:
     url: >-
       https://www.postman.com/mongodb-devrel/workspace/mongodb-atlas-administration-apis/overview
 common:
+  - type: CapabilityMap
+    url: capabilities/mongodb-atlas-capability-edges.yml
+    name: MongoDB Atlas Business Capability Map
   - type: AgenticAccess
     url: agentic-access/mongodb-atlas-agentic-access.yml
   - type: TrustCenter
